@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Login")]
+[assembly: AssemblyTitle("MusicVideo")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Login")]
+[assembly: AssemblyProduct("MusicVideo")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("cce1a093-5e43-4f48-afc8-1e1608604b08")]
+[assembly: Guid("1b26ed5a-08e5-45d0-9d3d-dce8f8deffa4")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

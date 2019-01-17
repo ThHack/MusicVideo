@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login", "Login\Login.csproj", "{CCE1A093-5E43-4F48-AFC8-1E1608604B08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicVideo", "MusicVideo\MusicVideo.csproj", "{1B26ED5A-08E5-45D0-9D3D-DCE8F8DEFFA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music", "Music\Music.csproj", "{E33EC9D6-F056-4B56-AEF0-EE28938D7E49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CCE1A093-5E43-4F48-AFC8-1E1608604B08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CCE1A093-5E43-4F48-AFC8-1E1608604B08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CCE1A093-5E43-4F48-AFC8-1E1608604B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CCE1A093-5E43-4F48-AFC8-1E1608604B08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B26ED5A-08E5-45D0-9D3D-DCE8F8DEFFA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B26ED5A-08E5-45D0-9D3D-DCE8F8DEFFA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B26ED5A-08E5-45D0-9D3D-DCE8F8DEFFA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B26ED5A-08E5-45D0-9D3D-DCE8F8DEFFA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E33EC9D6-F056-4B56-AEF0-EE28938D7E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E33EC9D6-F056-4B56-AEF0-EE28938D7E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E33EC9D6-F056-4B56-AEF0-EE28938D7E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E33EC9D6-F056-4B56-AEF0-EE28938D7E49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6335E19A-6E32-4938-ACAB-A7C586815EC7}
+		SolutionGuid = {F6B46B54-3DB9-4BAF-8528-BEA2D2E3E44F}
 	EndGlobalSection
 EndGlobal

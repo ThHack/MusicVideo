@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Login
+namespace MusicVideo
 {
-    public partial class Words : Form
+    public partial class MainWindow : Form
     {
-        public Words()
+        public MainWindow()
         {
             InitializeComponent();
         }
