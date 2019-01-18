@@ -312,10 +312,9 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.LightSkyBlue;
             this.panel4.Controls.Add(this.textBox1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Location = new System.Drawing.Point(200, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1082, 57);
+            this.panel4.Size = new System.Drawing.Size(882, 57);
             this.panel4.TabIndex = 2;
             // 
             // textBox1
