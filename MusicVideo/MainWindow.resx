@@ -117,47 +117,33 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="addLove" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\addLove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="front" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\front.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="history" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\history.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="list" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\list.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="log" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\log.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="love" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\love.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="next" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\next.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="play" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="playAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\playAll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="smalllog" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\smalllog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="衍射" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\衍射.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="银临_牵丝戏_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\银临_牵丝戏_4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        /9j/4AAQSkZJRgABAQEAeAB4AAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwg
+        JC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIy
+        MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAyADIDASIAAhEBAxEB/8QA
+        HwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIh
+        MUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVW
+        V1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXG
+        x8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQF
+        BgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAV
+        YnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOE
+        hYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq
+        8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD36sbX/E2meHbOS5v51RUHI71J4g1iLRtMkuJJFQ4+Ut0HvXh9
+        0mp/EfWRp9oHFgG3SSv1fnqfQegpN9B6RV2ehWnj+71zQb/W9LtwlnaEgeaOZDTvCPi7VvE4vA3kQPbg
+        MFVd24Vz/iB7Hwvokfg/Qg8tzPgTYbuf6mqy2Gr/AA5vIL4j7RZXCKtwF42nuv1oI9q77Hb6B8QbTVbm
+        SzuYGt7mIkPgZHBxXZK6uoZSCpGQR3ryqfRNH8Qr/bvhbUY7PUAdzoXAy3cEdjWh4S8Y3EeuDw/rMaQ3
+        UmfLKsNrN7fWjYpSUj0aiiimB5r8SdPn1y8t7GG6MIiAcgrkMfcVl2Or6h4W8PTWul6C95conzzwckue
+        5HXFbXj2/XTNQiYozNc7VTA4BHqe1U9G1YNqlvPE2+O5Uo7L0bHesHJxkbOMXb0OH8GarMviKXUNU0i+
+        NyuWj81MKZD1JPtXTeMNQ1rxBpLWdvcQ2vnn/VyJlSO4J7H3rur2xtrgHcyRuBw2cVzN5FEt0iyNGvln
+        PzEc/SplUmioUYWsebWela3DrUc3/CNQWKxlRPPHcEq6jj5R712eyFLpJ0jj8+Mjy2I5BrSurgRWpZRv
+        J+VQPesgyWiPHG06GUNgqGGWPpioc5SNHTjBpI9lhdZII5DjLKCfxFFR20O20hUgghFBB7cUV16nI9zn
+        vHugJr/hq4gLmORVyjjsa8y0fQtY0+CF5LmAtE4AtxnBQDHX1r3SRBIhRgCrDBB71y1/4YMbtJabnjxn
+        ZvOQf8KmSbN6LpvSo9jPiliuo1tdQUFTjY7dvY1T1TSbW0kjbZC2fu4HNaMuiusQESHcV3MjMSc+lVF0
+        m+LZFlKW9655RktDptC94s5XxPqA07Tl+YefKfkUegqv4C8Jz+IvEUGualHm3tDujZhgu3bPriuxb4dp
+        q+p299qzlVtxhIUPB+td5a2kFlbrBbxrHGowFUVtTglHU5Ksv3l7kveilorUyCiiigQEDriiiigA70UU
+        UALRRRQB/9k=
+</value>
   </data>
 </root>

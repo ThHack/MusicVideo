@@ -1,0 +1,14 @@
+F:\MusicVideo\MusicVideo\bin\Debug\MusicVideo.exe.config
+F:\MusicVideo\MusicVideo\bin\Debug\MusicVideo.exe
+F:\MusicVideo\MusicVideo\bin\Debug\MusicVideo.pdb
+F:\MusicVideo\MusicVideo\bin\Debug\Music.exe
+F:\MusicVideo\MusicVideo\bin\Debug\Music.pdb
+F:\MusicVideo\MusicVideo\bin\Debug\Music.exe.config
+F:\MusicVideo\MusicVideo\obj\Debug\MusicVideo.csprojAssemblyReference.cache
+F:\MusicVideo\MusicVideo\obj\Debug\MusicVideo.MainWindow.resources
+F:\MusicVideo\MusicVideo\obj\Debug\MusicVideo.Properties.Resources.resources
+F:\MusicVideo\MusicVideo\obj\Debug\MusicVideo.csproj.GenerateResource.cache
+F:\MusicVideo\MusicVideo\obj\Debug\MusicVideo.csproj.CoreCompileInputs.cache
+F:\MusicVideo\MusicVideo\obj\Debug\MusicVideo.csproj.CopyComplete
+F:\MusicVideo\MusicVideo\obj\Debug\MusicVideo.exe
+F:\MusicVideo\MusicVideo\obj\Debug\MusicVideo.pdb
