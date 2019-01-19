@@ -131,5 +131,23 @@
   <ItemGroup>
     <None Include="Resources\next.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\skin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus%282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\voice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\衍射.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
