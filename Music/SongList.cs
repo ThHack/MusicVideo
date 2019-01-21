@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Music
 {
+    /// <summary>
+    /// 歌单
+    /// </summary>
     class SongList
     {
         public string listName { get; set; }

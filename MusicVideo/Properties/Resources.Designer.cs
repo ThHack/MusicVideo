@@ -73,6 +73,16 @@ namespace MusicVideo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap AddListHoover {
+            get {
+                object obj = ResourceManager.GetObject("AddListHoover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap addLove {
             get {
                 object obj = ResourceManager.GetObject("addLove", resourceCulture);
@@ -163,29 +173,9 @@ namespace MusicVideo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap plus__2_ {
-            get {
-                object obj = ResourceManager.GetObject("plus__2_", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         internal static System.Drawing.Bitmap search {
             get {
                 object obj = ResourceManager.GetObject("search", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap skin {
-            get {
-                object obj = ResourceManager.GetObject("skin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -206,6 +196,26 @@ namespace MusicVideo.Properties {
         internal static System.Drawing.Bitmap voice {
             get {
                 object obj = ResourceManager.GetObject("voice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 删除 {
+            get {
+                object obj = ResourceManager.GetObject("删除", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 删除hoover {
+            get {
+                object obj = ResourceManager.GetObject("删除hoover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
