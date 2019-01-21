@@ -9,8 +9,8 @@ namespace Music
 {
     public class Item
     {
-        private Image img;
-        private String text;
+        public Image img;
+        public String text;
         public Image Img { get => img; set => img = value; }
         public string Text { get => text; set => text = value; }
 

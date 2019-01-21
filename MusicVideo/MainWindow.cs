@@ -10,25 +10,31 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Music;
 using System.Drawing.Drawing2D;
-
+using Shell32;
 
 namespace MusicVideo
 {
     public partial class MainWindow : Form
     {
-        public List<Item> MenuList;
+        
+        public List<Item> MenuList;//歌单控件链表
+        public List<SongList> SongLists;//歌单链表
 
         public MainWindow()
         {
             InitializeComponent();
+            
             MenuList = new List<Item>();
+            SongLists = new List<SongList>();
             MenuList.Add(new Item(Resources.love, "我喜欢"));
             MenuList.Add(new Item(Resources.history, "历史记录"));
             MenuList.Add(new Item(Resources.list, "默认歌单"));
             SongsList.Items.Add("我喜欢");
             SongsList.Items.Add("历史记录");
             SongsList.Items.Add("默认歌单");
-           
+            SongLists.Add(new SongList("我喜欢"));
+            SongLists.Add(new SongList("历史记录"));
+            SongLists.Add(new SongList("默认歌单"));
         }
 
 
@@ -57,17 +63,28 @@ namespace MusicVideo
 
         #endregion
 
-        #region 音量调节
-        /// <summary>
-        /// 弹出trackbar调节音量
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void pictureBox7_Click(object sender, EventArgs e)
-        {
-            trackBar1.Visible = (trackBar1.Visible == true) ? false : true;
-        }
+        #region 歌单中的歌曲列表
 
+        /// <summary>
+        /// 绘制歌曲列表
+        /// </summary>
+        private void DrawSongs()
+        {
+            int index = SongsList.SelectedIndex;//获取被选中的歌单
+            SongList songlist = SongLists[index];
+            Song newsong = songlist.songList.Last();
+            Songs.BeginUpdate();
+
+            string[] info = new string[3];
+            info[0] = newsong.SongName;//歌名
+            info[1] = newsong.Singer;//歌手
+            info[2] = newsong.Album;//专辑
+            ListViewItem listViewItem = new ListViewItem(info);
+            listViewItem.ForeColor = System.Drawing.Color.White;//字体设为白色
+            Songs.Items.Add(listViewItem);
+
+            Songs.EndUpdate();
+        }
         #endregion
 
         #region 歌单列表
@@ -129,8 +146,183 @@ namespace MusicVideo
             tempG.Dispose();
 
         }
+
+        /// <summary>
+        /// 添加歌单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddList_Click(object sender, EventArgs e)
+        {
+            //添加新歌单控件
+            MenuList.Add(new Item(Resources.list, "新建歌单"));
+            SongsList.Items.Add("新建歌单");
+            //添加新歌单
+            SongList songList = new SongList("新建歌单");
+            SongLists.Add(songList);
+        }
+
+        /// <summary>
+        /// 重命名歌单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RenameItem_Click(object sender, EventArgs e)
+        {
+            int index = SongsList.SelectedIndex;//获取被选择的歌单的index
+            if (index > 2)
+            {
+                string newName;
+                RenameDialog Dialog = new RenameDialog(SongsList.SelectedItem.ToString());
+                if (Dialog.ShowDialog() == DialogResult.OK)//弹出重命名对话框
+                {
+                    newName = Dialog.Result;//获得新名字
+                    MenuList.RemoveAt(index);
+                    SongsList.Items.RemoveAt(index);
+
+                    MenuList.Insert(index,new Item(Resources.list, newName));
+                    SongsList.Items.Insert(index,newName);
+                    SongLists[index].listName = newName;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 删除歌单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteSongListItem_Click(object sender, EventArgs e)
+        {
+            int index = SongsList.SelectedIndex;//获取被选择的歌单的index
+            if (index > 2)
+            {
+                MenuList.RemoveAt(index);
+                SongsList.Items.RemoveAt(index);
+                SongLists.RemoveAt(index);
+            }
+            else
+            {
+                MessageBox.Show(@"“我喜欢”，“播放历史”，“默认歌单” 不能删除");
+            }
+        }
+
+        /// <summary>
+        /// 添加本地歌曲
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddSongItem_Click(object sender, EventArgs e)
+        {
+            int index = SongsList.SelectedIndex;//被选中的歌单
+            openFileDialog1.ShowDialog();
+            string ResultFile;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ResultFile = openFileDialog1.FileName;//目标音乐文件地址                
+                Song song = new Song(ResultFile);
+                if (SongLists[index].songList.Contains(song))
+                {
+                    MessageBox.Show("不能重复添加相同歌曲！");
+                    return;
+                }
+                SongLists[index].AddSong(song);//将音乐加入音乐列表
+            }
+            DrawSongs();
+        }
+
         #endregion
 
+        
 
+        #region 播放顺序
+        /// <summary>
+        /// 设置随机播放
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RandomPlay_Click(object sender, EventArgs e)
+        {
+            pictureBox9.Image = Resources.随机播放;
+        }
+
+        /// <summary>
+        /// 设置顺序播放
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OrderPlay_Click(object sender, EventArgs e)
+        {
+            pictureBox9.Image = Resources.顺序播放;
+        }
+
+        /// <summary>
+        /// 设置顺序播放
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SinglePlay_Click(object sender, EventArgs e)
+        {
+            pictureBox9.Image = Resources.单曲循环;
+        }
+
+        /// <summary>
+        /// 列表循环
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LoopPlay_Click(object sender, EventArgs e)
+        {
+            pictureBox9.Image = Resources.列表循环;
+        }
+        #endregion
+
+        #region 播放、暂停、上一首、下一首、进度条、音量
+        /// <summary>
+        /// 点击音量图标，弹出调节音量的控件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void volumn_Click(object sender, EventArgs e)
+        {
+            volumnBar.Visible = (volumnBar.Visible == false) ? true : false;
+        }
+
+        /// <summary>
+        /// 播放和暂停
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Play_Click(object sender, EventArgs e)
+        {
+            if(Play.Image==Resources.play)
+            {
+                
+            }
+        }
+
+        /// <summary>
+        /// 下一首
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NextSong_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// 上一首
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FrontSong_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        
     }
 }

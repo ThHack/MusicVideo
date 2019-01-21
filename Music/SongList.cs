@@ -9,7 +9,7 @@ namespace Music
     /// <summary>
     /// 歌单
     /// </summary>
-    class SongList
+    public class SongList
     {
         public string listName { get; set; }
         public List<Song> songList;
@@ -25,7 +25,7 @@ namespace Music
         /// 添加歌曲到歌单，如果有重复的则退出
         /// </summary>
         /// <param name="song"></param>
-        private void AddSong(Song song)
+        public void AddSong(Song song)
         {
             foreach (Song s in songList)
                 if (s.SongName.Equals(song.SongName) && s.Singer.Equals(song.Singer))
@@ -38,7 +38,7 @@ namespace Music
         /// 删除歌单中某首歌曲
         /// </summary>
         /// <param name="song"></param>
-        private void DeleteSong(Song song)
+        public void DeleteSong(Song song)
         {
             songList.Remove(song);
         }
@@ -48,7 +48,7 @@ namespace Music
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        private List<Song> QuerySong(string name)
+        public List<Song> QuerySong(string name)
         {
             return songList.Where(song => song.SongName.Contains(name)
             || song.Singer.Contains(name)).ToList();
@@ -58,7 +58,7 @@ namespace Music
         /// 歌单中全部歌曲
         /// </summary>
         /// <returns></returns>
-        private List<Song> QueryAll()
+        public List<Song> QueryAll()
         {
             return songList;
         }

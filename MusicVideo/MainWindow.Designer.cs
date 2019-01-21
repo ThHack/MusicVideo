@@ -29,26 +29,35 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.PlayOrder = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.RandomPlay = new System.Windows.Forms.ToolStripMenuItem();
+            this.OrderPlay = new System.Windows.Forms.ToolStripMenuItem();
+            this.SinglePlay = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoopPlay = new System.Windows.Forms.ToolStripMenuItem();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.volumn = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.FrontSong = new System.Windows.Forms.PictureBox();
+            this.NextSong = new System.Windows.Forms.PictureBox();
+            this.Play = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.AddList = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.SongsList = new System.Windows.Forms.ListBox();
             this.ListItem = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteSongListItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddSongItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RenameItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -67,23 +76,27 @@
             this.button9 = new System.Windows.Forms.Button();
             this.默认歌单 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.Songs = new System.Windows.Forms.ListView();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.volumnBar = new System.Windows.Forms.TrackBar();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.Songs = new System.Windows.Forms.ListView();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            this.PlayOrder.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FrontSong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NextSong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Play)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddList)).BeginInit();
             this.panel6.SuspendLayout();
             this.ListItem.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -94,18 +107,20 @@
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumnBar)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panel1.Controls.Add(this.pictureBox7);
+            this.panel1.Controls.Add(this.pictureBox9);
+            this.panel1.Controls.Add(this.axWindowsMediaPlayer1);
+            this.panel1.Controls.Add(this.volumn);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.pictureBox6);
-            this.panel1.Controls.Add(this.pictureBox5);
-            this.panel1.Controls.Add(this.pictureBox4);
+            this.panel1.Controls.Add(this.FrontSong);
+            this.panel1.Controls.Add(this.NextSong);
+            this.panel1.Controls.Add(this.Play);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.pictureBox3);
@@ -115,17 +130,86 @@
             this.panel1.Size = new System.Drawing.Size(1082, 78);
             this.panel1.TabIndex = 0;
             // 
-            // pictureBox7
+            // pictureBox9
             // 
-            this.pictureBox7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox7.Image = global::MusicVideo.Properties.Resources.voice;
-            this.pictureBox7.Location = new System.Drawing.Point(674, 21);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(45, 45);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 8;
-            this.pictureBox7.TabStop = false;
-            this.pictureBox7.Click += new System.EventHandler(this.pictureBox7_Click);
+            this.pictureBox9.ContextMenuStrip = this.PlayOrder;
+            this.pictureBox9.Image = global::MusicVideo.Properties.Resources.随机播放;
+            this.pictureBox9.Location = new System.Drawing.Point(426, 24);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 10;
+            this.pictureBox9.TabStop = false;
+            // 
+            // PlayOrder
+            // 
+            this.PlayOrder.BackColor = System.Drawing.Color.White;
+            this.PlayOrder.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.PlayOrder.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RandomPlay,
+            this.OrderPlay,
+            this.SinglePlay,
+            this.LoopPlay});
+            this.PlayOrder.Name = "PlayOrder";
+            this.PlayOrder.Size = new System.Drawing.Size(143, 108);
+            // 
+            // RandomPlay
+            // 
+            this.RandomPlay.BackColor = System.Drawing.Color.White;
+            this.RandomPlay.Image = global::MusicVideo.Properties.Resources.随机播放;
+            this.RandomPlay.Name = "RandomPlay";
+            this.RandomPlay.Size = new System.Drawing.Size(142, 26);
+            this.RandomPlay.Text = "随机播放";
+            this.RandomPlay.Click += new System.EventHandler(this.RandomPlay_Click);
+            // 
+            // OrderPlay
+            // 
+            this.OrderPlay.BackColor = System.Drawing.Color.White;
+            this.OrderPlay.Image = global::MusicVideo.Properties.Resources.顺序播放;
+            this.OrderPlay.Name = "OrderPlay";
+            this.OrderPlay.Size = new System.Drawing.Size(142, 26);
+            this.OrderPlay.Text = "顺序播放";
+            this.OrderPlay.Click += new System.EventHandler(this.OrderPlay_Click);
+            // 
+            // SinglePlay
+            // 
+            this.SinglePlay.BackColor = System.Drawing.Color.White;
+            this.SinglePlay.Image = global::MusicVideo.Properties.Resources.单曲循环;
+            this.SinglePlay.Name = "SinglePlay";
+            this.SinglePlay.Size = new System.Drawing.Size(142, 26);
+            this.SinglePlay.Text = "单曲循环";
+            this.SinglePlay.Click += new System.EventHandler(this.SinglePlay_Click);
+            // 
+            // LoopPlay
+            // 
+            this.LoopPlay.BackColor = System.Drawing.Color.White;
+            this.LoopPlay.Image = global::MusicVideo.Properties.Resources.列表循环;
+            this.LoopPlay.Name = "LoopPlay";
+            this.LoopPlay.Size = new System.Drawing.Size(142, 26);
+            this.LoopPlay.Text = "列表循环";
+            this.LoopPlay.Click += new System.EventHandler(this.LoopPlay_Click);
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(1026, 21);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(38, 23);
+            this.axWindowsMediaPlayer1.TabIndex = 9;
+            this.axWindowsMediaPlayer1.Visible = false;
+            // 
+            // volumn
+            // 
+            this.volumn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.volumn.Image = global::MusicVideo.Properties.Resources.voice;
+            this.volumn.Location = new System.Drawing.Point(674, 21);
+            this.volumn.Name = "volumn";
+            this.volumn.Size = new System.Drawing.Size(45, 45);
+            this.volumn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.volumn.TabIndex = 8;
+            this.volumn.TabStop = false;
+            this.volumn.Click += new System.EventHandler(this.volumn_Click);
             // 
             // label7
             // 
@@ -134,7 +218,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(55, 15);
             this.label7.TabIndex = 7;
-            this.label7.Text = "/02:30";
+            this.label7.Text = "/00:00";
             // 
             // label6
             // 
@@ -143,40 +227,43 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 15);
             this.label6.TabIndex = 6;
-            this.label6.Text = "01:30";
+            this.label6.Text = "00:00";
             // 
-            // pictureBox6
+            // FrontSong
             // 
-            this.pictureBox6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox6.Image = global::MusicVideo.Properties.Resources.front;
-            this.pictureBox6.Location = new System.Drawing.Point(479, 21);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(45, 45);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 5;
-            this.pictureBox6.TabStop = false;
+            this.FrontSong.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FrontSong.Image = global::MusicVideo.Properties.Resources.front;
+            this.FrontSong.Location = new System.Drawing.Point(479, 21);
+            this.FrontSong.Name = "FrontSong";
+            this.FrontSong.Size = new System.Drawing.Size(45, 45);
+            this.FrontSong.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.FrontSong.TabIndex = 5;
+            this.FrontSong.TabStop = false;
+            this.FrontSong.Click += new System.EventHandler(this.FrontSong_Click);
             // 
-            // pictureBox5
+            // NextSong
             // 
-            this.pictureBox5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox5.Image = global::MusicVideo.Properties.Resources.next;
-            this.pictureBox5.Location = new System.Drawing.Point(613, 21);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(45, 45);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 4;
-            this.pictureBox5.TabStop = false;
+            this.NextSong.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.NextSong.Image = global::MusicVideo.Properties.Resources.next;
+            this.NextSong.Location = new System.Drawing.Point(613, 21);
+            this.NextSong.Name = "NextSong";
+            this.NextSong.Size = new System.Drawing.Size(45, 45);
+            this.NextSong.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.NextSong.TabIndex = 4;
+            this.NextSong.TabStop = false;
+            this.NextSong.Click += new System.EventHandler(this.NextSong_Click);
             // 
-            // pictureBox4
+            // Play
             // 
-            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox4.Image = global::MusicVideo.Properties.Resources.play;
-            this.pictureBox4.Location = new System.Drawing.Point(533, 6);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(67, 68);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 3;
-            this.pictureBox4.TabStop = false;
+            this.Play.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Play.Image = global::MusicVideo.Properties.Resources.play;
+            this.Play.Location = new System.Drawing.Point(533, 6);
+            this.Play.Name = "Play";
+            this.Play.Size = new System.Drawing.Size(67, 68);
+            this.Play.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Play.TabIndex = 3;
+            this.Play.TabStop = false;
+            this.Play.Click += new System.EventHandler(this.Play_Click);
             // 
             // label5
             // 
@@ -227,7 +314,7 @@
             // 
             // panel10
             // 
-            this.panel10.Controls.Add(this.pictureBox9);
+            this.panel10.Controls.Add(this.AddList);
             this.panel10.Controls.Add(this.label3);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel10.Location = new System.Drawing.Point(0, 0);
@@ -235,16 +322,17 @@
             this.panel10.Size = new System.Drawing.Size(200, 44);
             this.panel10.TabIndex = 11;
             // 
-            // pictureBox9
+            // AddList
             // 
-            this.pictureBox9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox9.Image = global::MusicVideo.Properties.Resources.AddListHoover;
-            this.pictureBox9.Location = new System.Drawing.Point(146, 3);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(51, 38);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox9.TabIndex = 10;
-            this.pictureBox9.TabStop = false;
+            this.AddList.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AddList.Image = global::MusicVideo.Properties.Resources.AddListHoover;
+            this.AddList.Location = new System.Drawing.Point(146, 3);
+            this.AddList.Name = "AddList";
+            this.AddList.Size = new System.Drawing.Size(51, 38);
+            this.AddList.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.AddList.TabIndex = 10;
+            this.AddList.TabStop = false;
+            this.AddList.Click += new System.EventHandler(this.AddList_Click);
             // 
             // label3
             // 
@@ -285,26 +373,37 @@
             // 
             this.ListItem.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ListItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2});
+            this.DeleteSongListItem,
+            this.AddSongItem,
+            this.RenameItem});
             this.ListItem.Name = "SongList";
-            this.ListItem.Size = new System.Drawing.Size(143, 56);
+            this.ListItem.Size = new System.Drawing.Size(143, 82);
             // 
-            // toolStripMenuItem1
+            // DeleteSongListItem
             // 
-            this.toolStripMenuItem1.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.toolStripMenuItem1.Image = global::MusicVideo.Properties.Resources.删除hoover;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(142, 26);
-            this.toolStripMenuItem1.Text = "删除歌单";
+            this.DeleteSongListItem.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.DeleteSongListItem.Image = global::MusicVideo.Properties.Resources.删除hoover;
+            this.DeleteSongListItem.Name = "DeleteSongListItem";
+            this.DeleteSongListItem.Size = new System.Drawing.Size(142, 26);
+            this.DeleteSongListItem.Text = "删除歌单";
+            this.DeleteSongListItem.Click += new System.EventHandler(this.DeleteSongListItem_Click);
             // 
-            // toolStripMenuItem2
+            // AddSongItem
             // 
-            this.toolStripMenuItem2.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.toolStripMenuItem2.Image = global::MusicVideo.Properties.Resources.AddListHoover;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(142, 26);
-            this.toolStripMenuItem2.Text = "添加歌曲";
+            this.AddSongItem.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.AddSongItem.Image = global::MusicVideo.Properties.Resources.AddListHoover;
+            this.AddSongItem.Name = "AddSongItem";
+            this.AddSongItem.Size = new System.Drawing.Size(142, 26);
+            this.AddSongItem.Text = "本地歌曲";
+            this.AddSongItem.Click += new System.EventHandler(this.AddSongItem_Click);
+            // 
+            // RenameItem
+            // 
+            this.RenameItem.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.RenameItem.Name = "RenameItem";
+            this.RenameItem.Size = new System.Drawing.Size(142, 26);
+            this.RenameItem.Text = "重命名";
+            this.RenameItem.Click += new System.EventHandler(this.RenameItem_Click);
             // 
             // panel3
             // 
@@ -481,38 +580,6 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
-            // Songs
-            // 
-            this.Songs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(188)))), ((int)(((byte)(213)))));
-            this.Songs.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.Songs.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Songs.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Songs.ForeColor = System.Drawing.Color.Gray;
-            this.Songs.Location = new System.Drawing.Point(0, 147);
-            this.Songs.Name = "Songs";
-            this.Songs.Size = new System.Drawing.Size(858, 294);
-            this.Songs.TabIndex = 0;
-            this.Songs.UseCompatibleStateImageBehavior = false;
-            this.Songs.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "歌曲";
-            this.columnHeader1.Width = 459;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "歌手";
-            this.columnHeader2.Width = 130;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "专辑";
-            this.columnHeader3.Width = 130;
-            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.progressBar1);
@@ -531,13 +598,51 @@
             this.progressBar1.Size = new System.Drawing.Size(1082, 11);
             this.progressBar1.TabIndex = 0;
             // 
-            // trackBar1
+            // openFileDialog1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(653, 498);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(104, 56);
-            this.trackBar1.TabIndex = 9;
-            this.trackBar1.Visible = false;
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "音乐|*.mp3";
+            this.openFileDialog1.InitialDirectory = "D:\\Administrator\\Music";
+            // 
+            // volumnBar
+            // 
+            this.volumnBar.Location = new System.Drawing.Point(653, 498);
+            this.volumnBar.Name = "volumnBar";
+            this.volumnBar.Size = new System.Drawing.Size(104, 56);
+            this.volumnBar.TabIndex = 9;
+            this.volumnBar.Visible = false;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "歌曲";
+            this.columnHeader1.Width = 459;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "歌手";
+            this.columnHeader2.Width = 130;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "专辑";
+            this.columnHeader3.Width = 130;
+            // 
+            // Songs
+            // 
+            this.Songs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(188)))), ((int)(((byte)(213)))));
+            this.Songs.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.Songs.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Songs.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Songs.ForeColor = System.Drawing.Color.Gray;
+            this.Songs.Location = new System.Drawing.Point(0, 147);
+            this.Songs.Name = "Songs";
+            this.Songs.Size = new System.Drawing.Size(858, 294);
+            this.Songs.TabIndex = 0;
+            this.Songs.UseCompatibleStateImageBehavior = false;
+            this.Songs.View = System.Windows.Forms.View.Details;
             // 
             // MainWindow
             // 
@@ -545,7 +650,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1082, 610);
-            this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.volumnBar);
             this.Controls.Add(this.panel9);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.vScrollBar1);
@@ -559,16 +664,19 @@
             this.Text = "音乐播放器";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            this.PlayOrder.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FrontSong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NextSong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Play)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AddList)).EndInit();
             this.panel6.ResumeLayout(false);
             this.ListItem.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -582,7 +690,7 @@
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumnBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -603,37 +711,46 @@
         private System.Windows.Forms.VScrollBar vScrollBar1;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.ListView Songs;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Label 默认歌单;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.TextBox SearchBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.ContextMenuStrip ListItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem DeleteSongListItem;
+        private System.Windows.Forms.ToolStripMenuItem AddSongItem;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.PictureBox AddList;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.ListBox SongsList;
+        private System.Windows.Forms.ToolStripMenuItem RenameItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.PictureBox volumn;
+        private System.Windows.Forms.PictureBox FrontSong;
+        private System.Windows.Forms.PictureBox NextSong;
+        private System.Windows.Forms.PictureBox Play;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.TrackBar volumnBar;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.ContextMenuStrip PlayOrder;
+        private System.Windows.Forms.ToolStripMenuItem RandomPlay;
+        private System.Windows.Forms.ToolStripMenuItem OrderPlay;
+        private System.Windows.Forms.ToolStripMenuItem SinglePlay;
+        private System.Windows.Forms.ToolStripMenuItem LoopPlay;
+        private System.Windows.Forms.ListView Songs;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
