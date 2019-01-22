@@ -14,3 +14,7 @@ G:\MusicVideo\Music\obj\Debug\Music.pdb
 G:\MusicVideo\Music\bin\Debug\Interop.Shell32.dll
 G:\MusicVideo\Music\obj\Debug\Interop.Shell32.dll
 G:\MusicVideo\Music\obj\Debug\Music.csproj.ResolveComReference.cache
+F:\MusicVideo\Music\bin\Debug\Interop.Shell32.dll
+F:\MusicVideo\Music\obj\Debug\Music.csprojAssemblyReference.cache
+F:\MusicVideo\Music\obj\Debug\Interop.Shell32.dll
+F:\MusicVideo\Music\obj\Debug\Music.csproj.ResolveComReference.cache

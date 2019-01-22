@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Music;
 using System.Drawing.Drawing2D;
 using Shell32;
+using System.Linq;
 
 namespace MusicVideo
 {
@@ -19,6 +20,8 @@ namespace MusicVideo
         
         public List<Item> MenuList;//歌单控件链表
         public List<SongList> SongLists;//歌单链表
+        int second;//当前播放秒数
+        int allsecond;//一首歌的总时长
 
         public MainWindow()
         {
@@ -35,6 +38,8 @@ namespace MusicVideo
             SongLists.Add(new SongList("我喜欢"));
             SongLists.Add(new SongList("历史记录"));
             SongLists.Add(new SongList("默认歌单"));
+            timer1.Start();
+            timer2.Start();
         }
 
 
@@ -215,7 +220,6 @@ namespace MusicVideo
         private void AddSongItem_Click(object sender, EventArgs e)
         {
             int index = SongsList.SelectedIndex;//被选中的歌单
-            openFileDialog1.ShowDialog();
             string ResultFile;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -231,9 +235,7 @@ namespace MusicVideo
             DrawSongs();
         }
 
-        #endregion
-
-        
+        #endregion        
 
         #region 播放顺序
         /// <summary>
@@ -295,10 +297,37 @@ namespace MusicVideo
         /// <param name="e"></param>
         private void Play_Click(object sender, EventArgs e)
         {
-            if(Play.Image==Resources.play)
+            if (axWindowsMediaPlayer1.playState.ToString() == "wmppsPlaying")//正在播放->暂停
             {
-                
+                axWindowsMediaPlayer1.Ctlcontrols.pause();
+                Play.Image = Resources.play;
             }
+
+            else if(axWindowsMediaPlayer1.playState.ToString() == "wmppsPaused")
+            {
+                axWindowsMediaPlayer1.Ctlcontrols.play();
+                Play.Image = Resources.pause;
+            }
+
+            if (axWindowsMediaPlayer1.playState.ToString()== "wmppsUndefined")//开始播放
+            {
+                if (Songs.SelectedItems.Count == 0) return;//没有选中歌曲
+                second = 0;
+                string name = Songs.SelectedItems[0].SubItems[0].Text;//歌名
+                string singer = Songs.SelectedItems[0].SubItems[1].Text;//歌手
+                
+                List<Song> songlist = SongLists[SongsList.SelectedIndex].songList
+                    .Where(s => s.SongName.Equals(name)&&s.Singer.Equals(singer)).ToList();//linq语句挑选歌曲
+                nameLabel.Text = name;
+                singerLabel.Text = singer;
+                allTime.Text = @"\" + songlist[0].Time;
+                allsecond = exchangeTime(songlist[0].Time);
+                PlaySong(songlist[0].URL);//播放该歌曲
+                Play.Image = Resources.pause;
+            }
+
+           
+
         }
 
         /// <summary>
@@ -318,11 +347,88 @@ namespace MusicVideo
         /// <param name="e"></param>
         private void FrontSong_Click(object sender, EventArgs e)
         {
-
+            
         }
+
+
 
         #endregion
 
-        
+        /// <summary>
+        /// 每0.1秒进行一次
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if(axWindowsMediaPlayer1.playState.ToString()== "wmppsPlaying")
+            {
+                timer1.Interval = 1000;
+                second++;
+                if (second < 10)
+                {
+                    nowTime.Text = "00:0" + second;
+                }
+                else if(second<60)
+                {
+                    nowTime.Text = "00:" + second;
+                }
+                else if(second<6000)
+                {
+                    string s;
+                    if (second % 60 < 10)
+                        s = "0" + second % 60;
+                    else
+                    {
+                        s = (second % 60).ToString();
+                    }
+                    nowTime.Text = "0" + second / 60 + ":" + s;
+                }
+               
+            }
+            
+        }
+
+        /// <summary>
+        /// 播放歌曲
+        /// </summary>
+        private void PlaySong(string url)
+        {
+            axWindowsMediaPlayer1.URL = url;//设置播放路径
+            axWindowsMediaPlayer1.Ctlcontrols.play();//开始播放
+        }
+
+
+       /// <summary>
+       /// 将时间字符串转化为秒数
+       /// </summary>
+       /// <param name="s"></param>
+       /// <returns></returns>
+        private int exchangeTime(string s)
+        {
+            string min = s.Substring(0, 2); int m;
+            string se = s.Substring(3, 2);  int sc;
+            if (min[0] == 0)            
+                m = Convert.ToInt32(min[1]);            
+            else
+                m = Convert.ToInt32(min);
+            if (se[0] == 0)
+                sc = Convert.ToInt32(se[1]);
+            else
+                sc = Convert.ToInt32(se);
+            return m * 60 + sc;
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (axWindowsMediaPlayer1.playState.ToString() == "wmppsPlaying")
+            {
+                double s = Convert.ToDouble(second);
+                double a = Convert.ToDouble(allsecond);
+                double ans = s / a;
+                int v = (int)(ans * 100);
+                progressBar1.Value = v;
+            }
+        }
     }
 }

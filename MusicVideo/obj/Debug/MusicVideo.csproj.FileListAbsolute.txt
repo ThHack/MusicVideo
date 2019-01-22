@@ -34,3 +34,11 @@ G:\MusicVideo\MusicVideo\bin\Debug\Interop.WMPLib.dll
 G:\MusicVideo\MusicVideo\bin\Debug\AxInterop.WMPLib.dll
 G:\MusicVideo\MusicVideo\bin\Debug\Interop.Shell32.dll
 G:\MusicVideo\MusicVideo\obj\Debug\Interop.Shell32.dll
+F:\MusicVideo\MusicVideo\bin\Debug\Interop.Shell32.dll
+F:\MusicVideo\MusicVideo\bin\Debug\Interop.WMPLib.dll
+F:\MusicVideo\MusicVideo\bin\Debug\AxInterop.WMPLib.dll
+F:\MusicVideo\MusicVideo\obj\Debug\Interop.Shell32.dll
+F:\MusicVideo\MusicVideo\obj\Debug\Interop.WMPLib.dll
+F:\MusicVideo\MusicVideo\obj\Debug\AxInterop.WMPLib.dll
+F:\MusicVideo\MusicVideo\obj\Debug\MusicVideo.csproj.ResolveComReference.cache
+F:\MusicVideo\MusicVideo\obj\Debug\MusicVideo.RenameDialog.resources
