@@ -114,9 +114,6 @@
     <None Include="Resources\log.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\playAll.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +221,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\列表循环.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\歌词.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

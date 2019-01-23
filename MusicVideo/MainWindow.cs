@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Music;
 using System.Drawing.Drawing2D;
-using Shell32;
-using System.Linq;
+using System.IO;
 
 namespace MusicVideo
 {
@@ -22,6 +21,10 @@ namespace MusicVideo
         public List<SongList> SongLists;//歌单链表
         int second;//当前播放秒数
         int allsecond;//一首歌的总时长
+        int currentIndex;//当前播放的音乐在列表中的下标
+        private string PlayMode = "随机播放";//播放状态
+        private Random random = new Random();//设置随机数
+        string[,] lrc = new string[2, 500];//保存歌词和当前进度
 
         public MainWindow()
         {
@@ -246,26 +249,18 @@ namespace MusicVideo
         private void RandomPlay_Click(object sender, EventArgs e)
         {
             pictureBox9.Image = Resources.随机播放;
+            PlayMode = "随机播放";
         }
 
         /// <summary>
-        /// 设置顺序播放
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OrderPlay_Click(object sender, EventArgs e)
-        {
-            pictureBox9.Image = Resources.顺序播放;
-        }
-
-        /// <summary>
-        /// 设置顺序播放
+        /// 设置单曲循环
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SinglePlay_Click(object sender, EventArgs e)
         {
             pictureBox9.Image = Resources.单曲循环;
+            PlayMode = "单曲循环";
         }
 
         /// <summary>
@@ -276,10 +271,11 @@ namespace MusicVideo
         private void LoopPlay_Click(object sender, EventArgs e)
         {
             pictureBox9.Image = Resources.列表循环;
+            PlayMode = "列表循环";
         }
         #endregion
 
-        #region 播放、暂停、上一首、下一首、进度条、音量
+        #region 播放、暂停、上一首、下一首、进度条、音量、显示歌词
         /// <summary>
         /// 点击音量图标，弹出调节音量的控件
         /// </summary>
@@ -288,6 +284,16 @@ namespace MusicVideo
         private void volumn_Click(object sender, EventArgs e)
         {
             volumnBar.Visible = (volumnBar.Visible == false) ? true : false;
+        }
+
+        /// <summary>
+        /// 调节音量
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void volumnBar_Scroll(object sender, EventArgs e)
+        {
+            axWindowsMediaPlayer1.settings.volume = volumnBar.Value;
         }
 
         /// <summary>
@@ -303,33 +309,109 @@ namespace MusicVideo
                 Play.Image = Resources.play;
             }
 
-            else if(axWindowsMediaPlayer1.playState.ToString() == "wmppsPaused")
+            else if(axWindowsMediaPlayer1.playState.ToString() == "wmppsPaused")//暂停->继续播放
             {
                 axWindowsMediaPlayer1.Ctlcontrols.play();
                 Play.Image = Resources.pause;
             }
 
-            if (axWindowsMediaPlayer1.playState.ToString()== "wmppsUndefined")//开始播放
+            else if (axWindowsMediaPlayer1.playState.ToString() == "wmppsUndefined")//开始播放
             {
                 if (Songs.SelectedItems.Count == 0) return;//没有选中歌曲
                 second = 0;
                 string name = Songs.SelectedItems[0].SubItems[0].Text;//歌名
                 string singer = Songs.SelectedItems[0].SubItems[1].Text;//歌手
-                
-                List<Song> songlist = SongLists[SongsList.SelectedIndex].songList
-                    .Where(s => s.SongName.Equals(name)&&s.Singer.Equals(singer)).ToList();//linq语句挑选歌曲
-                nameLabel.Text = name;
-                singerLabel.Text = singer;
-                allTime.Text = @"\" + songlist[0].Time;
-                allsecond = exchangeTime(songlist[0].Time);
-                PlaySong(songlist[0].URL);//播放该歌曲
+
+                currentIndex = Songs.SelectedItems[0].Index;//被选中歌曲的下标
+                int index = SongsList.SelectedIndex;//获取被选中歌单的下标
+                nameLabel.Text = name;//展示歌名
+                singerLabel.Text = singer;//展示歌手
+                ProgressBar.Maximum = exchangeTime(SongLists[index].songList[currentIndex].Time);
+                allTime.Text = @"\" + SongLists[index].songList[currentIndex].Time;//展示时间
+                allsecond = exchangeTime(SongLists[index].songList[currentIndex].Time);
+                axWindowsMediaPlayer1.URL = SongLists[index].songList[currentIndex].URL;
+                axWindowsMediaPlayer1.Ctlcontrols.play();//播放该歌曲
                 Play.Image = Resources.pause;
             }
-
-           
-
         }
 
+        /// <summary>
+        /// 获取播放路径
+        /// </summary>
+        /// <returns></returns>
+        private string GetPath()
+        {
+            switch (PlayMode)
+            {
+                case "随机播放":
+                    currentIndex = random.Next(1, Songs.Items.Count);//生成1到Count-1的随机数
+                    break;
+                case "单曲循环":
+                    break;
+                case "列表循环":
+                    if (currentIndex == Songs.Items.Count - 1)
+                        currentIndex = 0;
+                    else
+                        currentIndex++;
+                    break;
+            }
+            int index = SongsList.SelectedIndex;
+            Song nextSong = (SongLists[index].songList)[currentIndex];//下一首歌
+            refreshLabel(nextSong);
+            return nextSong.URL;
+        }
+
+        /// <summary>
+        /// 更新歌名、歌手、时间、进度条
+        /// </summary>
+        private void refreshLabel(Song song)
+        {
+            nameLabel.Text = song.SongName;
+            singerLabel.Text = song.Singer;
+            allTime.Text = @"\"+song.Time;
+            nowTime.Text = "00:00";
+            ProgressBar.Value = 0;
+            ProgressBar.Maximum = exchangeTime(song.Time);
+        }
+
+        /// <summary>
+        /// 播放状态改变时
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void axWindowsMediaPlayer1_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            switch (e.newState)
+            {
+                case 0://未知状态
+                    break;
+                case 1://停止
+                    timer1.Stop();
+                    break;
+                case 2://暂停
+                    timer1.Stop();//停止计时
+                    break;
+                case 3://正在播放
+                    timer1.Start();//重新计时
+                    break;
+                case 8://播放结束                    
+                    string path = GetPath();//获取音乐播放文件路径，并添加到播放控件
+                    WMPLib.IWMPMedia media = axWindowsMediaPlayer1.newMedia(path);
+                    axWindowsMediaPlayer1.currentPlaylist.appendItem(media);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 调节进度条进度
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ProgressBar_Scroll(object sender, EventArgs e)
+        {
+            axWindowsMediaPlayer1.Ctlcontrols.currentPosition = ProgressBar.Value;
+        }
+        
         /// <summary>
         /// 下一首
         /// </summary>
@@ -351,7 +433,75 @@ namespace MusicVideo
         }
 
 
+        /// <summary>
+        /// 开始显示歌词
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lyric_btn_Click(object sender, EventArgs e)
+        {
+            timer3.Start();
+        }
 
+        /// <summary>
+        /// 显示歌词
+        /// </summary>
+        private void showLyric()
+        {
+            if (this.axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsPlaying)
+            {
+                int index = SongsList.SelectedIndex;
+                string url = SongLists[index].songList[currentIndex].URL;
+                string lyric = url.Substring(0, url.Length - 3) + "qrc";
+                try
+                {
+                    using (StreamReader sr = new StreamReader(lyric))
+                    {
+                        string line;
+                        //循环读取每一行歌词
+                        while ((line = sr.ReadLine()) != null)
+                        {
+                            //将读取到的歌词存放到数组中
+                            for (int i = 0; i < 500; i++)
+                            {
+                                if (lrc[0, i] == null)
+                                {
+                                    lrc[0, i] = line.Substring(10, line.Length - 10);
+                                    break;
+                                }
+                            }
+                            //将读取到的歌词时间存放到数组中
+                            for (int i = 0; i < 500; i++)
+                            {
+                                if (lrc[1, i] == null)
+                                {
+                                    lrc[1, i] = line.Substring(1, 5);
+                                    break;
+                                }
+                            }
+                        }
+                        /***********动态显示歌词***************/
+                        //获取播放器当前进度
+                        string numss = this.axWindowsMediaPlayer1.Ctlcontrols.currentPositionString;
+                        for (int i = 0; i < 500; i++)
+                        {
+                            if (lrc[1, i].Equals(numss))
+                            {
+                                this.LyricWords.Text = lrc[0, i];
+                            }
+                            //else
+                            //{
+                            //    this.lblLrc.Text = "************";
+                            //}
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show("异常：" + ex.Message);
+                }
+            }
+        }
         #endregion
 
         /// <summary>
@@ -364,7 +514,7 @@ namespace MusicVideo
             if(axWindowsMediaPlayer1.playState.ToString()== "wmppsPlaying")
             {
                 timer1.Interval = 1000;
-                second++;
+                second = (int)axWindowsMediaPlayer1.Ctlcontrols.currentPosition;
                 if (second < 10)
                 {
                     nowTime.Text = "00:0" + second;
@@ -384,19 +534,12 @@ namespace MusicVideo
                     }
                     nowTime.Text = "0" + second / 60 + ":" + s;
                 }
-               
+                ProgressBar.Value = (int)axWindowsMediaPlayer1.Ctlcontrols.currentPosition;
             }
             
         }
 
-        /// <summary>
-        /// 播放歌曲
-        /// </summary>
-        private void PlaySong(string url)
-        {
-            axWindowsMediaPlayer1.URL = url;//设置播放路径
-            axWindowsMediaPlayer1.Ctlcontrols.play();//开始播放
-        }
+       
 
 
        /// <summary>
@@ -407,9 +550,9 @@ namespace MusicVideo
         private int exchangeTime(string s)
         {
             string min = s.Substring(0, 2); int m;
-            string se = s.Substring(3, 2);  int sc;
-            if (min[0] == 0)            
-                m = Convert.ToInt32(min[1]);            
+            string se = s.Substring(3, 2); int sc;
+            if (min[0] == 0)
+                m = Convert.ToInt32(min[1]);
             else
                 m = Convert.ToInt32(min);
             if (se[0] == 0)
@@ -417,18 +560,17 @@ namespace MusicVideo
             else
                 sc = Convert.ToInt32(se);
             return m * 60 + sc;
-        }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        }
+        
+        /// <summary>
+        /// 动态显示歌词
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer3_Tick(object sender, EventArgs e)
         {
-            if (axWindowsMediaPlayer1.playState.ToString() == "wmppsPlaying")
-            {
-                double s = Convert.ToDouble(second);
-                double a = Convert.ToDouble(allsecond);
-                double ans = s / a;
-                int v = (int)(ans * 100);
-                progressBar1.Value = v;
-            }
+            showLyric();
         }
     }
 }

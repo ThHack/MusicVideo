@@ -24,11 +24,11 @@ namespace MusicVideo.Properties {
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
         
-        public static global::System.Resources.ResourceManager resourceMan;
+        private static global::System.Resources.ResourceManager resourceMan;
         
-        public static global::System.Globalization.CultureInfo resourceCulture;
+        private static global::System.Globalization.CultureInfo resourceCulture;
         
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledpublicCode")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
         
@@ -183,16 +183,6 @@ namespace MusicVideo.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap playAll {
-            get {
-                object obj = ResourceManager.GetObject("playAll", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         internal static System.Drawing.Bitmap rename {
             get {
                 object obj = ResourceManager.GetObject("rename", resourceCulture);
@@ -266,6 +256,16 @@ namespace MusicVideo.Properties {
         internal static System.Drawing.Bitmap 单曲循环 {
             get {
                 object obj = ResourceManager.GetObject("单曲循环", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 歌词 {
+            get {
+                object obj = ResourceManager.GetObject("歌词", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
