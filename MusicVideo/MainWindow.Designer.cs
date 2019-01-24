@@ -74,7 +74,7 @@
             this.LyricWords = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
             this.lyric_btn = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.addLove = new System.Windows.Forms.Button();
             this.默认歌单 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.Songs = new System.Windows.Forms.ListView();
@@ -374,6 +374,7 @@
             this.SongsList.Size = new System.Drawing.Size(200, 390);
             this.SongsList.TabIndex = 0;
             this.SongsList.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.SongsList_DrawItem);
+            this.SongsList.SelectedIndexChanged += new System.EventHandler(this.SongsList_SelectedIndexChanged);
             // 
             // ListItem
             // 
@@ -524,7 +525,7 @@
             this.panel7.Controls.Add(this.LyricWords);
             this.panel7.Controls.Add(this.button11);
             this.panel7.Controls.Add(this.lyric_btn);
-            this.panel7.Controls.Add(this.button9);
+            this.panel7.Controls.Add(this.addLove);
             this.panel7.Controls.Add(this.默认歌单);
             this.panel7.Controls.Add(this.pictureBox2);
             this.panel7.Controls.Add(this.Songs);
@@ -563,18 +564,18 @@
             this.lyric_btn.Size = new System.Drawing.Size(142, 36);
             this.lyric_btn.TabIndex = 4;
             this.lyric_btn.UseVisualStyleBackColor = false;
-            this.lyric_btn.Click += new System.EventHandler(this.lyric_btn_Click);
             // 
-            // button9
+            // addLove
             // 
-            this.button9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button9.Image = global::MusicVideo.Properties.Resources.addLove;
-            this.button9.Location = new System.Drawing.Point(192, 94);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(142, 36);
-            this.button9.TabIndex = 3;
-            this.button9.UseVisualStyleBackColor = false;
+            this.addLove.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.addLove.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addLove.Image = global::MusicVideo.Properties.Resources.addLove;
+            this.addLove.Location = new System.Drawing.Point(192, 94);
+            this.addLove.Name = "addLove";
+            this.addLove.Size = new System.Drawing.Size(142, 36);
+            this.addLove.TabIndex = 3;
+            this.addLove.UseVisualStyleBackColor = false;
+            this.addLove.Click += new System.EventHandler(this.addLove_Click);
             // 
             // 默认歌单
             // 
@@ -633,7 +634,7 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.InitialDirectory = "D:\\Administrator\\Music";
+            this.openFileDialog1.InitialDirectory = "C：";
             // 
             // timer1
             // 
@@ -649,10 +650,6 @@
             this.ProgressBar.Size = new System.Drawing.Size(1082, 35);
             this.ProgressBar.TabIndex = 0;
             this.ProgressBar.Scroll += new System.EventHandler(this.ProgressBar_Scroll);
-            // 
-            // timer3
-            // 
-            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
             // MainWindow
             // 
@@ -721,7 +718,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button lyric_btn;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button addLove;
         private System.Windows.Forms.Label 默认歌单;
         private System.Windows.Forms.TextBox SearchBox;
         private System.Windows.Forms.Label singerLabel;

@@ -80,17 +80,18 @@ namespace MusicVideo
         {
             int index = SongsList.SelectedIndex;//获取被选中的歌单
             SongList songlist = SongLists[index];
-            Song newsong = songlist.songList.Last();
-            Songs.BeginUpdate();
-
             string[] info = new string[3];
-            info[0] = newsong.SongName;//歌名
-            info[1] = newsong.Singer;//歌手
-            info[2] = newsong.Album;//专辑
-            ListViewItem listViewItem = new ListViewItem(info);
-            listViewItem.ForeColor = System.Drawing.Color.White;//字体设为白色
-            Songs.Items.Add(listViewItem);
-
+            Songs.Items.Clear();
+            Songs.BeginUpdate();            
+            foreach (Song newsong in songlist.songList)
+            {
+                info[0] = newsong.SongName;//歌名
+                info[1] = newsong.Singer;//歌手
+                info[2] = newsong.Album;//专辑
+                ListViewItem listViewItem = new ListViewItem(info);
+                listViewItem.ForeColor = System.Drawing.Color.White;//字体设为白色
+                Songs.Items.Add(listViewItem);
+            }
             Songs.EndUpdate();
         }
         #endregion
@@ -224,6 +225,7 @@ namespace MusicVideo
         {
             int index = SongsList.SelectedIndex;//被选中的歌单
             string ResultFile;
+            openFileDialog1.InitialDirectory = "C:\\";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 ResultFile = openFileDialog1.FileName;//目标音乐文件地址                
@@ -235,6 +237,16 @@ namespace MusicVideo
                 }
                 SongLists[index].AddSong(song);//将音乐加入音乐列表
             }
+            DrawSongs();
+        }
+
+        /// <summary>
+        /// 选中的歌单发生改变，重新绘制
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SongsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
             DrawSongs();
         }
 
@@ -419,7 +431,26 @@ namespace MusicVideo
         /// <param name="e"></param>
         private void NextSong_Click(object sender, EventArgs e)
         {
+            if (currentIndex < Songs.Items.Count-1)
+            {
+                axWindowsMediaPlayer1.Ctlcontrols.stop();
+                currentIndex += 1;
+            }
+            else
+            {
+                axWindowsMediaPlayer1.Ctlcontrols.stop();
+                currentIndex = 0;
+            }
+            Play.Image = Resources.pause;
+            Songs.Items[currentIndex].Focused = true;
+            Songs.Items[currentIndex].EnsureVisible();
+            Songs.Items[currentIndex].Selected = true;
 
+            Song song = SongLists[SongsList.SelectedIndex].songList[currentIndex];
+            string url = song.URL;
+            axWindowsMediaPlayer1.URL = url;
+            axWindowsMediaPlayer1.Ctlcontrols.play();
+            refreshLabel(song);
         }
 
         /// <summary>
@@ -428,80 +459,30 @@ namespace MusicVideo
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void FrontSong_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-
-        /// <summary>
-        /// 开始显示歌词
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void lyric_btn_Click(object sender, EventArgs e)
-        {
-            timer3.Start();
-        }
-
-        /// <summary>
-        /// 显示歌词
-        /// </summary>
-        private void showLyric()
-        {
-            if (this.axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsPlaying)
+        {  
+            if (currentIndex > 0)
             {
-                int index = SongsList.SelectedIndex;
-                string url = SongLists[index].songList[currentIndex].URL;
-                string lyric = url.Substring(0, url.Length - 3) + "qrc";
-                try
-                {
-                    using (StreamReader sr = new StreamReader(lyric))
-                    {
-                        string line;
-                        //循环读取每一行歌词
-                        while ((line = sr.ReadLine()) != null)
-                        {
-                            //将读取到的歌词存放到数组中
-                            for (int i = 0; i < 500; i++)
-                            {
-                                if (lrc[0, i] == null)
-                                {
-                                    lrc[0, i] = line.Substring(10, line.Length - 10);
-                                    break;
-                                }
-                            }
-                            //将读取到的歌词时间存放到数组中
-                            for (int i = 0; i < 500; i++)
-                            {
-                                if (lrc[1, i] == null)
-                                {
-                                    lrc[1, i] = line.Substring(1, 5);
-                                    break;
-                                }
-                            }
-                        }
-                        /***********动态显示歌词***************/
-                        //获取播放器当前进度
-                        string numss = this.axWindowsMediaPlayer1.Ctlcontrols.currentPositionString;
-                        for (int i = 0; i < 500; i++)
-                        {
-                            if (lrc[1, i].Equals(numss))
-                            {
-                                this.LyricWords.Text = lrc[0, i];
-                            }
-                            //else
-                            //{
-                            //    this.lblLrc.Text = "************";
-                            //}
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //MessageBox.Show("异常：" + ex.Message);
-                }
+                axWindowsMediaPlayer1.Ctlcontrols.stop();
+                currentIndex -= 1;
             }
+            else
+            {
+                axWindowsMediaPlayer1.Ctlcontrols.stop();
+                currentIndex = Songs.Items.Count - 1;
+            }
+            Play.Image = Resources.pause;
+            Songs.Items[currentIndex].Focused = true;
+            Songs.Items[currentIndex].EnsureVisible();
+            Songs.Items[currentIndex].Selected = true;
+            Song song = SongLists[SongsList.SelectedIndex].songList[currentIndex];
+            string url = song.URL;
+            axWindowsMediaPlayer1.URL = url;
+            axWindowsMediaPlayer1.Ctlcontrols.play();
+            refreshLabel(song);
         }
+
+
+
         #endregion
 
         /// <summary>
@@ -562,15 +543,15 @@ namespace MusicVideo
             return m * 60 + sc;
 
         }
-        
+
         /// <summary>
-        /// 动态显示歌词
+        /// 添加喜欢
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timer3_Tick(object sender, EventArgs e)
+        private void addLove_Click(object sender, EventArgs e)
         {
-            showLyric();
+            
         }
     }
 }
