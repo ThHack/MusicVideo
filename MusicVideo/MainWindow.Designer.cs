@@ -276,18 +276,16 @@
             this.singerLabel.AutoSize = true;
             this.singerLabel.Location = new System.Drawing.Point(120, 38);
             this.singerLabel.Name = "singerLabel";
-            this.singerLabel.Size = new System.Drawing.Size(107, 15);
+            this.singerLabel.Size = new System.Drawing.Size(0, 15);
             this.singerLabel.TabIndex = 2;
-            this.singerLabel.Text = "银临/Aki 阿杰";
             // 
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
             this.nameLabel.Location = new System.Drawing.Point(120, 7);
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(52, 15);
+            this.nameLabel.Size = new System.Drawing.Size(0, 15);
             this.nameLabel.TabIndex = 1;
-            this.nameLabel.Text = "牵丝戏";
             // 
             // pictureBox3
             // 
