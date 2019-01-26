@@ -57,10 +57,8 @@
             this.ListItem = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.DeleteSongListItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddSongItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.RenameItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
@@ -103,7 +101,6 @@
             this.panel6.SuspendLayout();
             this.ListItem.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -379,10 +376,9 @@
             this.ListItem.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ListItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DeleteSongListItem,
-            this.AddSongItem,
-            this.RenameItem});
+            this.AddSongItem});
             this.ListItem.Name = "SongList";
-            this.ListItem.Size = new System.Drawing.Size(143, 82);
+            this.ListItem.Size = new System.Drawing.Size(215, 84);
             // 
             // DeleteSongListItem
             // 
@@ -402,19 +398,10 @@
             this.AddSongItem.Text = "本地歌曲";
             this.AddSongItem.Click += new System.EventHandler(this.AddSongItem_Click);
             // 
-            // RenameItem
-            // 
-            this.RenameItem.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.RenameItem.Name = "RenameItem";
-            this.RenameItem.Size = new System.Drawing.Size(142, 26);
-            this.RenameItem.Text = "重命名";
-            this.RenameItem.Click += new System.EventHandler(this.RenameItem_Click);
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(188)))), ((int)(((byte)(213)))));
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
@@ -424,21 +411,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(90, 22);
+            this.label1.Location = new System.Drawing.Point(26, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 15);
+            this.label1.Size = new System.Drawing.Size(0, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "衍射";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::MusicVideo.Properties.Resources.衍射1;
-            this.pictureBox1.Location = new System.Drawing.Point(29, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // vScrollBar1
             // 
@@ -686,7 +662,6 @@
             this.ListItem.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
@@ -705,7 +680,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
@@ -734,7 +708,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.ListBox SongsList;
-        private System.Windows.Forms.ToolStripMenuItem RenameItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.PictureBox volumn;
         private System.Windows.Forms.PictureBox FrontSong;

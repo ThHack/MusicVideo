@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace MusicVideo
 {
-    public partial class RenameDialog : Form
+    public partial class NameDialog : Form
     {
         public string Result { get; set; }
 
-        public RenameDialog()
+        public NameDialog()
         {
             InitializeComponent();           
         }
 
-        public RenameDialog(string OriginName)
+        public NameDialog(string OriginName)
         {
             InitializeComponent();
             NewName.Text = OriginName;//展示原歌单名字

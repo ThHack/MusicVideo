@@ -24,26 +24,44 @@ namespace MusicVideo
         int currentIndex;//当前播放的音乐在列表中的下标
         private string PlayMode = "随机播放";//播放状态
         private Random random = new Random();//设置随机数
-        string[,] lrc = new string[2, 500];//保存歌词和当前进度
 
         public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+
+        public MainWindow(string userName)
         {
             InitializeComponent();
             
             MenuList = new List<Item>();
             SongLists = new List<SongList>();
-            MenuList.Add(new Item(Resources.love, "我喜欢"));
-            MenuList.Add(new Item(Resources.history, "历史记录"));
-            MenuList.Add(new Item(Resources.list, "默认歌单"));
-            SongsList.Items.Add("我喜欢");
-            SongsList.Items.Add("历史记录");
-            SongsList.Items.Add("默认歌单");
-            SongLists.Add(new SongList("我喜欢"));
-            SongLists.Add(new SongList("历史记录"));
-            SongLists.Add(new SongList("默认歌单"));
+            List<string> temp = MySQLConn.GetTableName(userName);
+            foreach (string s in temp)
+            {
+                MenuList.Add(new Item(Resources.love, s));
+                SongsList.Items.Add(s);
+                SongLists.Add(MySQLConn.Getsonglist(userName, s));
+            }
+            
             timer1.Start();
             timer2.Start();
+
+            label1.Text = userName; label1.Visible = true;
+            Initialize(userName);
         }
+
+
+        /// <summary>
+        /// 根据用户初始化界面
+        /// </summary>
+        private void Initialize(string user)
+        {
+
+        }
+
+
 
 
         #region 搜索框及其对应功能
@@ -163,38 +181,22 @@ namespace MusicVideo
         /// <param name="e"></param>
         private void AddList_Click(object sender, EventArgs e)
         {
-            //添加新歌单控件
-            MenuList.Add(new Item(Resources.list, "新建歌单"));
-            SongsList.Items.Add("新建歌单");
-            //添加新歌单
-            SongList songList = new SongList("新建歌单");
-            SongLists.Add(songList);
-        }
-
-        /// <summary>
-        /// 重命名歌单
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RenameItem_Click(object sender, EventArgs e)
-        {
-            int index = SongsList.SelectedIndex;//获取被选择的歌单的index
-            if (index > 2)
+            string name = null;
+            NameDialog Dialog = new NameDialog("new_songlist");
+            if (Dialog.ShowDialog() == DialogResult.OK)//弹出命名对话框
             {
-                string newName;
-                RenameDialog Dialog = new RenameDialog(SongsList.SelectedItem.ToString());
-                if (Dialog.ShowDialog() == DialogResult.OK)//弹出重命名对话框
-                {
-                    newName = Dialog.Result;//获得新名字
-                    MenuList.RemoveAt(index);
-                    SongsList.Items.RemoveAt(index);
-
-                    MenuList.Insert(index,new Item(Resources.list, newName));
-                    SongsList.Items.Insert(index,newName);
-                    SongLists[index].listName = newName;
-                }
+                name = Dialog.Result;//获得新名字               
             }
+            //添加新歌单控件
+            MenuList.Add(new Item(Resources.list, name));
+            SongsList.Items.Add(name);
+            //添加新歌单
+            SongList songList = new SongList(name);
+            SongLists.Add(songList);
+            MySQLConn.CreateTable(label1.Text,name);//数据库创建一个表
         }
+
+       
 
         /// <summary>
         /// 删除歌单
@@ -206,9 +208,11 @@ namespace MusicVideo
             int index = SongsList.SelectedIndex;//获取被选择的歌单的index
             if (index > 2)
             {
+                MySQLConn.DeleteTable(label1.Text, SongLists[index].listName);
                 MenuList.RemoveAt(index);
                 SongsList.Items.RemoveAt(index);
                 SongLists.RemoveAt(index);
+                
             }
             else
             {
@@ -236,6 +240,7 @@ namespace MusicVideo
                     return;
                 }
                 SongLists[index].AddSong(song);//将音乐加入音乐列表
+                MySQLConn.InsertSong(label1.Text, SongLists[index].listName, song.URL);
             }
             DrawSongs();
         }
@@ -551,7 +556,8 @@ namespace MusicVideo
         /// <param name="e"></param>
         private void addLove_Click(object sender, EventArgs e)
         {
-            
+            Song song = SongLists[SongsList.SelectedIndex].songList[currentIndex];//被选中的歌
+            SongLists[0].AddSong(song);
         }
     }
 }

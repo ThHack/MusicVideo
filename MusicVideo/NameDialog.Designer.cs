@@ -1,6 +1,6 @@
 ﻿namespace MusicVideo
 {
-    partial class RenameDialog
+    partial class NameDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -109,7 +109,7 @@
             this.Controls.Add(this.OK);
             this.Controls.Add(this.NewName);
             this.Name = "RenameDialog";
-            this.Text = "重命名";
+            this.Text = "歌单命名";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
