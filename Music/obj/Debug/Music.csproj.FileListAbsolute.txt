@@ -1,0 +1,10 @@
+E:\Code\MusicVideo\Music\bin\Debug\Music.exe.config
+E:\Code\MusicVideo\Music\bin\Debug\Music.exe
+E:\Code\MusicVideo\Music\bin\Debug\Music.pdb
+E:\Code\MusicVideo\Music\bin\Debug\Interop.Shell32.dll
+E:\Code\MusicVideo\Music\obj\Debug\Music.csprojAssemblyReference.cache
+E:\Code\MusicVideo\Music\obj\Debug\Interop.Shell32.dll
+E:\Code\MusicVideo\Music\obj\Debug\Music.csproj.ResolveComReference.cache
+E:\Code\MusicVideo\Music\obj\Debug\Music.csproj.CoreCompileInputs.cache
+E:\Code\MusicVideo\Music\obj\Debug\Music.exe
+E:\Code\MusicVideo\Music\obj\Debug\Music.pdb

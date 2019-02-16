@@ -111,6 +111,9 @@
     <EmbeddedResource Include="NameDialog.resx">
       <DependentUpon>NameDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Words.resx">
+      <DependentUpon>Words.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -242,6 +245,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\歌词.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\音乐播放器图片.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
