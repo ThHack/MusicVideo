@@ -25,3 +25,4 @@ E:\Code\MusicVideo\MusicVideo\obj\Debug\MusicVideo.csproj.CoreCompileInputs.cach
 E:\Code\MusicVideo\MusicVideo\obj\Debug\MusicVideo.csproj.CopyComplete
 E:\Code\MusicVideo\MusicVideo\obj\Debug\MusicVideo.exe
 E:\Code\MusicVideo\MusicVideo\obj\Debug\MusicVideo.pdb
+E:\Code\MusicVideo\MusicVideo\obj\Debug\MusicVideo.Words.resources
