@@ -39,9 +39,11 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.CommentTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.CommentButton = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumnBar)).BeginInit();
@@ -68,10 +70,10 @@
             this.panel1.Controls.Add(this.nameLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.ForeColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(0, 673);
+            this.panel1.Location = new System.Drawing.Point(0, 688);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1217, 95);
+            this.panel1.Size = new System.Drawing.Size(1217, 80);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -79,7 +81,7 @@
             // 
             this.displayTime.AutoSize = true;
             this.displayTime.Font = new System.Drawing.Font("宋体", 12F);
-            this.displayTime.Location = new System.Drawing.Point(732, 46);
+            this.displayTime.Location = new System.Drawing.Point(732, 40);
             this.displayTime.Name = "displayTime";
             this.displayTime.Size = new System.Drawing.Size(70, 24);
             this.displayTime.TabIndex = 12;
@@ -88,7 +90,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = global::MusicVideo.Properties.Resources.随机播放;
-            this.pictureBox9.Location = new System.Drawing.Point(1048, 31);
+            this.pictureBox9.Location = new System.Drawing.Point(1048, 19);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(45, 48);
@@ -98,7 +100,7 @@
             // 
             // volumnBar
             // 
-            this.volumnBar.Location = new System.Drawing.Point(925, 41);
+            this.volumnBar.Location = new System.Drawing.Point(925, 29);
             this.volumnBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.volumnBar.Maximum = 100;
             this.volumnBar.Name = "volumnBar";
@@ -122,7 +124,7 @@
             // 
             this.volumn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.volumn.Image = global::MusicVideo.Properties.Resources.voice;
-            this.volumn.Location = new System.Drawing.Point(868, 28);
+            this.volumn.Location = new System.Drawing.Point(868, 16);
             this.volumn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.volumn.Name = "volumn";
             this.volumn.Size = new System.Drawing.Size(51, 54);
@@ -134,7 +136,7 @@
             // 
             this.FrontSong.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FrontSong.Image = global::MusicVideo.Properties.Resources.front;
-            this.FrontSong.Location = new System.Drawing.Point(12, 25);
+            this.FrontSong.Location = new System.Drawing.Point(12, 16);
             this.FrontSong.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.FrontSong.Name = "FrontSong";
             this.FrontSong.Size = new System.Drawing.Size(51, 54);
@@ -146,7 +148,7 @@
             // 
             this.NextSong.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NextSong.Image = global::MusicVideo.Properties.Resources.next;
-            this.NextSong.Location = new System.Drawing.Point(150, 29);
+            this.NextSong.Location = new System.Drawing.Point(150, 19);
             this.NextSong.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.NextSong.Name = "NextSong";
             this.NextSong.Size = new System.Drawing.Size(51, 54);
@@ -158,7 +160,7 @@
             // 
             this.Play.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Play.Image = global::MusicVideo.Properties.Resources.play;
-            this.Play.Location = new System.Drawing.Point(69, 9);
+            this.Play.Location = new System.Drawing.Point(69, 0);
             this.Play.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Play.Name = "Play";
             this.Play.Size = new System.Drawing.Size(75, 82);
@@ -202,16 +204,16 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "听友评论";
             // 
-            // textBox1
+            // CommentTextBox
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.textBox1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.textBox1.Location = new System.Drawing.Point(50, 540);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(578, 50);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "发表评论...";
+            this.CommentTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.CommentTextBox.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.CommentTextBox.Location = new System.Drawing.Point(50, 529);
+            this.CommentTextBox.Multiline = true;
+            this.CommentTextBox.Name = "CommentTextBox";
+            this.CommentTextBox.Size = new System.Drawing.Size(578, 40);
+            this.CommentTextBox.TabIndex = 4;
+            this.CommentTextBox.Text = "发表评论...";
             // 
             // label2
             // 
@@ -226,14 +228,38 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // CommentButton
+            // 
+            this.CommentButton.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.CommentButton.Location = new System.Drawing.Point(653, 530);
+            this.CommentButton.Name = "CommentButton";
+            this.CommentButton.Size = new System.Drawing.Size(90, 40);
+            this.CommentButton.TabIndex = 7;
+            this.CommentButton.Text = "发表";
+            this.CommentButton.UseVisualStyleBackColor = true;
+            this.CommentButton.Click += new System.EventHandler(this.CommentButton_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.listBox1.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 24;
+            this.listBox1.Location = new System.Drawing.Point(50, 584);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(1116, 100);
+            this.listBox1.TabIndex = 8;
+            // 
             // Words
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(188)))), ((int)(((byte)(213)))));
             this.ClientSize = new System.Drawing.Size(1217, 768);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.CommentButton);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.CommentTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
@@ -270,10 +296,12 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox CommentTextBox;
         private System.Windows.Forms.Label label2;
         private System.ComponentModel.IContainer components;
         private System.Windows.Forms.Label displayTime;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button CommentButton;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

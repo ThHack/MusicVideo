@@ -142,18 +142,20 @@ namespace MusicVideo
         Rectangle backRect;//进度条背景
         Rectangle foreRect;//进度
         Rectangle setRect;//滑块
+        //ListBox CommentListBox;
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             //绘制进度条背景
-            backRect = new Rectangle(150, 35, 400, 5);
+            backRect = new Rectangle(150, 30, 400, 5);
             e.Graphics.FillRectangle(Brushes.LightGray, backRect);
             e.Graphics.DrawRectangle(Pens.LightGray, backRect);
             //进度
-            foreRect = new Rectangle(150, 35, (int)(setRectX * 400), 5);
+            foreRect = new Rectangle(150, 30, (int)(setRectX * 400), 5);
             e.Graphics.FillRectangle(Brushes.DeepSkyBlue, foreRect);
             e.Graphics.DrawRectangle(Pens.DeepSkyBlue, foreRect);
             //滑块
-            setRect = new Rectangle((int)(setRectX * 400) + 150, 33, 8, 8);
+            setRect = new Rectangle((int)(setRectX * 400) + 150, 28, 8, 8);
             e.Graphics.FillRectangle(Brushes.White, setRect);
             e.Graphics.DrawRectangle(Pens.LightGray, setRect);
         }
@@ -167,6 +169,18 @@ namespace MusicVideo
                 cp.ExStyle |= 0x02000000;
                 return cp;
             }
+        }
+
+        
+
+        private void CommentButton_Click(object sender, EventArgs e)
+        {
+            string name = "风逝west";
+            string time = DateTime.Now.ToString();
+            string comment = this.CommentTextBox.Text.Trim().ToString();
+            ListBox listBox = this.listBox1;
+            listBox.Items.Add(name + " : " + comment);
+            listBox.Items.Add(time);
         }
     }
 }
